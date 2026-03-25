@@ -17,7 +17,7 @@ Vista\frmMantenimientoUsuario$7.class
 Vista\frmMantenimientoUsuario$3.class
 Vista\MdiSeguridad$5.class
 Vista\frmLogin$5.class
-Vista\frmAplicaciones$1.class
+miVista\frmAplicaciones$1.class
 Vista\frmAplicaciones$4.class
 Vista\MdiSeguridad$10.class
 Vista\MdiSeguridad$17.class
@@ -51,6 +51,7 @@ Vista\frmMantenimientoUsuario$1.class
 Vista\MdiSeguridad$7.class
 Vista\frmAplicaciones$3.class
 Vista\MdiSeguridad$12.class
+Modelo\AsignacionAplicacionUsuarioDAO.class
 Modelo\BitacoraDAO.class
 Vista\frmMantenimientoUsuario$8.class
 Vista\MantenimientoBitacora.class
