@@ -9,41 +9,35 @@ import java.util.List;
 public class PerfilDAO {
 
     // =======================
-    // SQL PERFIL
+    // SQL PERFIL (ACTUALIZADO)
     // =======================
-    private static final String SQL_SELECT_PERFIL =
-            "SELECT perid, pernombre, perdescripcion, perestatus FROM perfil";
+    private static final String SQL_SELECT =
+            "SELECT percodigo, pernombre, perestado FROM perfil";
 
-    private static final String SQL_INSERT_PERFIL =
-            "INSERT INTO perfil(pernombre, perdescripcion, perestatus) VALUES(?, ?, ?)";
+    private static final String SQL_INSERT =
+            "INSERT INTO perfil(pernombre, perestado) VALUES(?, ?)";
 
-    private static final String SQL_UPDATE_PERFIL =
-            "UPDATE perfil SET pernombre=?, perdescripcion=?, perestatus=? WHERE perid=?";
+    private static final String SQL_UPDATE =
+            "UPDATE perfil SET pernombre=?, perestado=? WHERE percodigo=?";
 
-    private static final String SQL_DELETE_PERFIL =
-            "DELETE FROM perfil WHERE perid=?";
+    private static final String SQL_DELETE =
+            "DELETE FROM perfil WHERE percodigo=?";
 
-    private static final String SQL_SELECT_PERFIL_ID =
-            "SELECT perid, pernombre, perdescripcion, perestatus FROM perfil WHERE perid=?";
+    private static final String SQL_SELECT_ID =
+            "SELECT percodigo, pernombre, perestado FROM perfil WHERE percodigo=?";
 
 
     // =======================
-    // SQL BITACORA (AJUSTADO A TU CLASE)
+    // SQL BITACORA
     // =======================
     private static final String SQL_INSERT_BITACORA =
             "INSERT INTO bitacora(usucodigo, aplcodigo, bitfecha, bitip, bitequipo, bitaccion) VALUES(?, ?, ?, ?, ?, ?)";
-
-    private static final String SQL_SELECT_BITACORA =
-            "SELECT bitcodigo, usucodigo, aplcodigo, bitfecha, bitip, bitequipo, bitaccion FROM bitacora";
-
-    private static final String SQL_SELECT_BITACORA_ID =
-            "SELECT bitcodigo, usucodigo, aplcodigo, bitfecha, bitip, bitequipo, bitaccion FROM bitacora WHERE bitcodigo=?";
 
 
     // =======================
     // CRUD PERFIL
     // =======================
-    public List<clsPerfil> consultaPerfiles() {
+    public List<clsPerfil> obtenerPerfiles() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -51,15 +45,14 @@ public class PerfilDAO {
 
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_SELECT_PERFIL);
+            stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 clsPerfil p = new clsPerfil();
-                p.setPerId(rs.getInt("perid"));
-                p.setPerNombre(rs.getString("pernombre"));
-                p.setPerDescripcion(rs.getString("perdescripcion"));
-                p.setPerEstatus(rs.getString("perestatus"));
+                p.setPercodigo(rs.getInt("percodigo"));
+                p.setPernombre(rs.getString("pernombre"));
+                p.setPerestado(rs.getString("perestado"));
                 lista.add(p);
             }
 
@@ -81,11 +74,10 @@ public class PerfilDAO {
 
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_INSERT_PERFIL);
+            stmt = conn.prepareStatement(SQL_INSERT);
 
-            stmt.setString(1, perfil.getPerNombre());
-            stmt.setString(2, perfil.getPerDescripcion());
-            stmt.setString(3, perfil.getPerEstatus());
+            stmt.setString(1, perfil.getPernombre());
+            stmt.setString(2, perfil.getPerestado());
 
             rows = stmt.executeUpdate();
 
@@ -106,12 +98,11 @@ public class PerfilDAO {
 
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_UPDATE_PERFIL);
+            stmt = conn.prepareStatement(SQL_UPDATE);
 
-            stmt.setString(1, perfil.getPerNombre());
-            stmt.setString(2, perfil.getPerDescripcion());
-            stmt.setString(3, perfil.getPerEstatus());
-            stmt.setInt(4, perfil.getPerId());
+            stmt.setString(1, perfil.getPernombre());
+            stmt.setString(2, perfil.getPerestado());
+            stmt.setInt(3, perfil.getPercodigo());
 
             rows = stmt.executeUpdate();
 
@@ -132,8 +123,9 @@ public class PerfilDAO {
 
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_DELETE_PERFIL);
-            stmt.setInt(1, perfil.getPerId());
+            stmt = conn.prepareStatement(SQL_DELETE);
+
+            stmt.setInt(1, perfil.getPercodigo());
 
             rows = stmt.executeUpdate();
 
@@ -155,16 +147,15 @@ public class PerfilDAO {
 
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_SELECT_PERFIL_ID);
+            stmt = conn.prepareStatement(SQL_SELECT_ID);
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
                 perfil = new clsPerfil();
-                perfil.setPerId(rs.getInt("perid"));
-                perfil.setPerNombre(rs.getString("pernombre"));
-                perfil.setPerDescripcion(rs.getString("perdescripcion"));
-                perfil.setPerEstatus(rs.getString("perestatus"));
+                perfil.setPercodigo(rs.getInt("percodigo"));
+                perfil.setPernombre(rs.getString("pernombre"));
+                perfil.setPerestado(rs.getString("perestado"));
             }
 
         } catch (SQLException e) {
@@ -180,7 +171,7 @@ public class PerfilDAO {
 
 
     // =======================
-    // CRUD BITACORA
+    // INSERTAR BITACORA
     // =======================
     public int insertarBitacora(clsBitacora bitacora) {
         Connection conn = null;
@@ -208,73 +199,5 @@ public class PerfilDAO {
         }
 
         return rows;
-    }
-
-    public List<clsBitacora> consultarBitacoras() {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        List<clsBitacora> lista = new ArrayList<>();
-
-        try {
-            conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_SELECT_BITACORA);
-            rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                clsBitacora b = new clsBitacora();
-                b.setBitcodigo(rs.getInt("bitcodigo"));
-                b.setUsucodigo(rs.getInt("usucodigo"));
-                b.setAplcodigo(rs.getInt("aplcodigo"));
-                b.setBitfecha(rs.getString("bitfecha"));
-                b.setBitip(rs.getString("bitip"));
-                b.setBitequipo(rs.getString("bitequipo"));
-                b.setBitaccion(rs.getString("bitaccion"));
-                lista.add(b);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-        } finally {
-            Conexion.close(rs);
-            Conexion.close(stmt);
-            Conexion.close(conn);
-        }
-
-        return lista;
-    }
-
-    public clsBitacora obtenerBitacoraPorId(int id) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        clsBitacora b = null;
-
-        try {
-            conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL_SELECT_BITACORA_ID);
-            stmt.setInt(1, id);
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                b = new clsBitacora();
-                b.setBitcodigo(rs.getInt("bitcodigo"));
-                b.setUsucodigo(rs.getInt("usucodigo"));
-                b.setAplcodigo(rs.getInt("aplcodigo"));
-                b.setBitfecha(rs.getString("bitfecha"));
-                b.setBitip(rs.getString("bitip"));
-                b.setBitequipo(rs.getString("bitequipo"));
-                b.setBitaccion(rs.getString("bitaccion"));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-        } finally {
-            Conexion.close(rs);
-            Conexion.close(stmt);
-            Conexion.close(conn);
-        }
-
-        return b;
     }
 }
