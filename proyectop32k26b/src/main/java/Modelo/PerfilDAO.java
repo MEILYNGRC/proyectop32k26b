@@ -17,6 +17,8 @@ public class PerfilDAO {
     
     
     
+    
+    
 
     private static final String SQL_INSERT =
             "INSERT INTO perfiles(pernombre, perestado) VALUES(?, ?)";
