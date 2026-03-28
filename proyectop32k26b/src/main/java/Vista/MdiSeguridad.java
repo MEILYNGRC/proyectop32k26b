@@ -19,6 +19,10 @@ import javax.swing.JOptionPane;
  * @author visitante
  */
 public class MdiSeguridad extends javax.swing.JFrame {
+    //////////////////////////////////////////////////////////////////
+    frmAplicaciones vistaAplicaciones;
+    frmMantenimientoPerfil vistaPerfiles;
+    //////////////////////////////////////////////////////////////////
 
     /**
      * Creates new form MdiGeneral
@@ -270,6 +274,19 @@ public class MdiSeguridad extends javax.swing.JFrame {
                         System.exit(0);
                     }
     }
+    
+    
+    //////////////////////////////////////////////////////////////////
+    public void cerrarVentanas(){
+    if(vistaAplicaciones != null){
+        vistaAplicaciones.dispose();
+    }
+    if(vistaPerfiles != null){
+        vistaPerfiles.dispose();
+    }
+}
+    //////////////////////////////////////////////////////////////////
+    
     private void mnuCatalogosMantenimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCatalogosMantenimientosActionPerformed
         // TODO add your handling code here:
 
@@ -303,12 +320,19 @@ public class MdiSeguridad extends javax.swing.JFrame {
 
     private void mantenimientoAplicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoAplicacionesActionPerformed
         // TODO add your handling code here:
-        frmAplicaciones ventana = new frmAplicaciones();
-        jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
-        ventana.setVisible(true);
+        //////////////////////////////////////////////////////////////////
+        cerrarVentanas();
+
+    vistaAplicaciones = new frmAplicaciones();
+    jDesktopPane1.add(vistaAplicaciones);
+    vistaAplicaciones.setVisible(true);
+
+    Dimension desktopSize = jDesktopPane1.getSize();
+    Dimension FrameSize = vistaAplicaciones.getSize();
+    vistaAplicaciones.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+    mantenimientoPerfiles.setSelected(false);
+    //////////////////////////////////////////////////////////////////
     }//GEN-LAST:event_mantenimientoAplicacionesActionPerformed
 
     private void mantenimientoModulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoModulosActionPerformed
@@ -322,11 +346,19 @@ public class MdiSeguridad extends javax.swing.JFrame {
 
     private void mantenimientoPerfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoPerfilesActionPerformed
          //TODO add your handling code here:
-        //frmMantenimientoPerfil ventana = new frmMantenimientoPerfil();
-        //jDesktopPane1.add(ventana);
-        //Dimension desktopSize = jDesktopPane1.getSize();
-        //Dimension FrameSize = ventana.getSize();
-        //ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);        
+         //////////////////////////////////////////////////////////////////
+        cerrarVentanas();
+
+    vistaPerfiles = new frmMantenimientoPerfil();
+    jDesktopPane1.add(vistaPerfiles);
+    vistaPerfiles.setVisible(true);
+
+    Dimension desktopSize = jDesktopPane1.getSize();
+    Dimension FrameSize = vistaPerfiles.getSize();
+    vistaPerfiles.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+    mantenimientoAplicaciones.setSelected(false);
+    //////////////////////////////////////////////////////////////////
     }//GEN-LAST:event_mantenimientoPerfilesActionPerformed
 
     private void mantenimientoTipoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoTipoUsuariosActionPerformed
