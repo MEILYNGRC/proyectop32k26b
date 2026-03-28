@@ -113,9 +113,9 @@ public int actualizaAsignacion(clsAsignacionAplicacionUsuario asig) {
 
                 clsAplicaciones app = new clsAplicaciones();
 
-                app.setAplCodigo(rs.getInt("APLCODIGO"));
-                app.setAplNombre(rs.getString("APLNOMBRE"));
-                app.setAplEstado(rs.getString("APLESTADO"));
+                app.setAplcodigo(rs.getInt("APLCODIGO"));
+                app.setAplnombre(rs.getString("APLNOMBRE"));
+                app.setAplestado(rs.getString("APLESTADO"));
 
                 lista.add(app);
             }
@@ -190,9 +190,9 @@ public clsAsignacionAplicacionUsuario getPermisos(int usuId, int aplCodigo) {
 
                 clsAplicaciones app = new clsAplicaciones();
 
-                app.setAplCodigo(rs.getInt("APLCODIGO"));
-                app.setAplNombre(rs.getString("APLNOMBRE"));
-                app.setAplEstado(rs.getString("APLESTADO"));
+                app.setAplcodigo(rs.getInt("APLCODIGO"));
+                app.setAplnombre(rs.getString("APLNOMBRE"));
+                app.setAplestado(rs.getString("APLESTADO"));
 
                 lista.add(app);
             }

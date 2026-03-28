@@ -350,7 +350,7 @@ private int aplCodigo;
 
     clsAsignacionAplicacionUsuario asig =
         new clsAsignacionAplicacionUsuario(
-            app.getAplCodigo(),
+            app.getAplcodigo(),
             usu.getUsuId(),
             ins, sel, upd, del, rep
         );
@@ -444,11 +444,11 @@ private void cargarListas() {
 
     modeloDisponibles.clear();
     for (clsAplicaciones a : listaDisp)
-        modeloDisponibles.addElement(a.getAplCodigo() + " - " + a.getAplNombre());
+        modeloDisponibles.addElement(a.getAplcodigo() + " - " + a.getAplnombre());
 
     modeloAsignadas.clear();
     for (clsAplicaciones a : listaAsig)
-        modeloAsignadas.addElement(a.getAplCodigo() + " - " + a.getAplNombre());
+        modeloAsignadas.addElement(a.getAplcodigo() + " - " + a.getAplnombre());
 
     lstDisponibles.setModel(modeloDisponibles);
     lstAsignadas.setModel(modeloAsignadas);
@@ -465,7 +465,7 @@ private void asignarAplicacion() {
 
     clsAsignacionAplicacionUsuario asignacion =
         new clsAsignacionAplicacionUsuario(
-            app.getAplCodigo(),
+            app.getAplcodigo(),
             usu.getUsuId(),
             "0","0","0","0","0"
         );
@@ -483,7 +483,7 @@ private void quitarAplicacion() {
 
     clsAplicaciones app = listaAsig.get(idx);
     clsAsignacionAplicacionUsuario asignacion = new clsAsignacionAplicacionUsuario();
-    asignacion.setAplcodigo(app.getAplCodigo());
+    asignacion.setAplcodigo(app.getAplcodigo());
     asignacion.setUsuId(usu.getUsuId());
 
     int res = new clsAsignacionAplicacionUsuario().setQuitarAplicacion(asignacion);
@@ -564,7 +564,7 @@ private void abrirPermisosDialog() {
     clsAplicaciones app = listaAsig.get(idx);
 
     int usuId = usu.getUsuId();
-    int aplCodigo = app.getAplCodigo();
+    int aplCodigo = app.getAplcodigo();
 
     clsAsignacionAplicacionUsuario ctrl =
             new clsAsignacionAplicacionUsuario();
