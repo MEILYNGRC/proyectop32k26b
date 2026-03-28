@@ -90,7 +90,7 @@ public class MdiSeguridad extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 280, Short.MAX_VALUE)
         );
 
         mnuArchivo.setText("Archivo");
@@ -128,7 +128,6 @@ public class MdiSeguridad extends javax.swing.JFrame {
         });
         mnuCatalogosMantenimientos.add(mantenimientoUsuarios);
 
-        mantenimientoAplicaciones.setSelected(true);
         mantenimientoAplicaciones.setText("Mantenimiento Aplicaciones");
         mantenimientoAplicaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +136,6 @@ public class MdiSeguridad extends javax.swing.JFrame {
         });
         mnuCatalogosMantenimientos.add(mantenimientoAplicaciones);
 
-        mantenimientoModulos.setSelected(true);
         mantenimientoModulos.setText("Mantenimiento Modulos");
         mantenimientoModulos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +144,6 @@ public class MdiSeguridad extends javax.swing.JFrame {
         });
         mnuCatalogosMantenimientos.add(mantenimientoModulos);
 
-        mantenimientoPerfiles.setSelected(true);
         mantenimientoPerfiles.setText("Mantenimiento Perfiles");
         mantenimientoPerfiles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,7 +152,6 @@ public class MdiSeguridad extends javax.swing.JFrame {
         });
         mnuCatalogosMantenimientos.add(mantenimientoPerfiles);
 
-        mantenimientoTipoUsuarios.setSelected(true);
         mantenimientoTipoUsuarios.setText("Mantenimiento Tipo de Usuarios");
         mantenimientoTipoUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +187,6 @@ public class MdiSeguridad extends javax.swing.JFrame {
         });
         mnuProcesos.add(aplicacionesUsuarios);
 
-        menuperfilUsuario.setSelected(true);
         menuperfilUsuario.setText("Perfil Usuario");
         menuperfilUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,8 +321,8 @@ public class MdiSeguridad extends javax.swing.JFrame {
     }//GEN-LAST:event_mantenimientoModulosActionPerformed
 
     private void mantenimientoPerfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoPerfilesActionPerformed
-        // TODO add your handling code here:
-        //frmPerfiles ventana = new frmPerfiles();
+         //TODO add your handling code here:
+        //frmMantenimientoPerfil ventana = new frmMantenimientoPerfil();
         //jDesktopPane1.add(ventana);
         //Dimension desktopSize = jDesktopPane1.getSize();
         //Dimension FrameSize = ventana.getSize();

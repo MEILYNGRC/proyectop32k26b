@@ -1,7 +1,6 @@
 Vista\MdiSeguridad$14.class
 Controlador\clsSeguridad.class
 Vista\frmAplicaciones$5.class
-Vista\frmMantenimientoPerfil$7.class
 Vista\frmMantenimientoUsuario$4.class
 Vista\frmAsignacionAplicacionUsuario$9.class
 Vista\frmAsignacionAplicacionUsuario$2.class
@@ -33,7 +32,6 @@ Vista\MdiSeguridad$10.class
 Vista\MdiSeguridad$17.class
 Vista\MantenimientoBitacora$5.class
 Vista\frmAsignacionAplicacionUsuario$1.class
-Vista\frmMantenimientoPerfil$9.class
 Vista\frmMantenimientoUsuario$6.class
 Vista\frmAplicaciones$8.class
 Vista\frmAsignacionAplicacionUsuario$7.class
@@ -57,7 +55,6 @@ Vista\frmAplicaciones$10.class
 Vista\MdiSeguridad$8.class
 Vista\MdiSeguridad$1.class
 Vista\MdiSeguridad$16.class
-Vista\frmMantenimientoPerfil$8.class
 Vista\frmAplicaciones$7.class
 Vista\frmAsignacionAplicacionUsuario$8.class
 Vista\frmMantenimientoUsuario$2.class

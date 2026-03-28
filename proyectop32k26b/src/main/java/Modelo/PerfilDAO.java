@@ -2,6 +2,7 @@ package Modelo;
 
 import Controlador.clsPerfil;
 import Controlador.clsBitacora;
+import Vista.frmMantenimientoPerfil;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,20 +12,23 @@ public class PerfilDAO {
     // =======================
     // SQL PERFIL (ACTUALIZADO)
     // =======================
-    private static final String SQL_SELECT =
-            "SELECT percodigo, pernombre, perestado FROM perfil";
+    private static final String SQL_SELECT = 
+    "SELECT percodigo, pernombre, perestado FROM perfiles";
+    
+    
+    
 
     private static final String SQL_INSERT =
-            "INSERT INTO perfil(pernombre, perestado) VALUES(?, ?)";
+            "INSERT INTO perfiles(pernombre, perestado) VALUES(?, ?)";
 
     private static final String SQL_UPDATE =
-            "UPDATE perfil SET pernombre=?, perestado=? WHERE percodigo=?";
+            "UPDATE perfiles SET pernombre=?, perestado=? WHERE percodigo=?";
 
     private static final String SQL_DELETE =
-            "DELETE FROM perfil WHERE percodigo=?";
+            "DELETE FROM perfiles WHERE percodigo=?";
 
     private static final String SQL_SELECT_ID =
-            "SELECT percodigo, pernombre, perestado FROM perfil WHERE percodigo=?";
+            "SELECT percodigo, pernombre, perestado FROM perfiles WHERE percodigo=?";
 
 
     // =======================
@@ -201,3 +205,8 @@ public class PerfilDAO {
         return rows;
     }
 }
+
+
+
+
+
