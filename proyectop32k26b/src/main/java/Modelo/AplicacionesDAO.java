@@ -1,9 +1,27 @@
 /*
+ * ============================================================
  * Autor: Anthony Suc
  * Fecha: 28/03/2026
+ * Clase: AplicacionesDAO
  * Descripción:
- * DAO encargado de gestionar las operaciones CRUD de la tabla "aplicaciones".
- * Incluye registro en bitácora para auditoría de acciones.
+ * Esta clase implementa el patrón DAO (Data Access Object)
+ * para gestionar las operaciones CRUD sobre la tabla "aplicaciones".
+ * 
+ * Funcionalidades principales:
+ * - Listar aplicaciones
+ * - Insertar nuevas aplicaciones
+ * - Actualizar aplicaciones existentes
+ * - Eliminar aplicaciones
+ * - Consultar aplicaciones por ID
+ * 
+ * Además, integra un sistema de bitácora para auditoría de acciones,
+ * permitiendo registrar eventos importantes realizados por el usuario.
+ * 
+ * Notas:
+ * - Utiliza conexiones a base de datos mediante la clase Conexion.
+ * - Implementa manejo de excepciones para garantizar estabilidad.
+ * - La bitácora no interrumpe el flujo principal en caso de fallo.
+ * ============================================================
  */
 
 package Modelo;
@@ -16,6 +34,11 @@ import java.util.List;
 
 public class AplicacionesDAO {
 
+    /**
+     * Método que obtiene todas las aplicaciones registradas en la base de datos.
+     * 
+     * @return Lista de objetos clsAplicaciones
+     */
     public List<clsAplicaciones> listar() {
         List<clsAplicaciones> lista = new ArrayList<>();
         String sql = "SELECT * FROM aplicaciones";
@@ -24,6 +47,7 @@ public class AplicacionesDAO {
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
+            // Recorrido de resultados y mapeo a objetos
             while (rs.next()) {
                 clsAplicaciones app = new clsAplicaciones();
                 app.setAplcodigo(rs.getInt("Aplcodigo"));
@@ -40,6 +64,12 @@ public class AplicacionesDAO {
         return lista;
     }
 
+    /**
+     * Inserta una nueva aplicación en la base de datos.
+     * También registra la acción en la bitácora.
+     * 
+     * @param app Objeto clsAplicaciones con los datos a insertar
+     */
     public void insert(clsAplicaciones app) {
 
         String sql = "INSERT INTO aplicaciones (Aplnombre, Aplestado) VALUES (?, ?)";
@@ -52,16 +82,18 @@ public class AplicacionesDAO {
 
             int rows = ps.executeUpdate();
 
+            // Validación de inserción exitosa
             if (rows > 0) {
                 int idGenerado = 0;
 
+                // Obtención del ID generado automáticamente
                 try (ResultSet rs = ps.getGeneratedKeys()) {
                     if (rs.next()) {
                         idGenerado = rs.getInt(1);
                     }
                 }
 
-                //Bitácora segura 
+                // Registro en bitácora (no crítico)
                 try {
                     registrarBitacora("INSERT aplicación ID: " + idGenerado +
                                       " Nombre: " + app.getAplnombre());
@@ -76,6 +108,12 @@ public class AplicacionesDAO {
         }
     }
 
+    /**
+     * Actualiza los datos de una aplicación existente.
+     * Registra la operación en la bitácora.
+     * 
+     * @param app Objeto clsAplicaciones con los datos actualizados
+     */
     public void update(clsAplicaciones app) {
 
         String sql = "UPDATE aplicaciones SET Aplnombre=?, Aplestado=? WHERE Aplcodigo=?";
@@ -91,6 +129,7 @@ public class AplicacionesDAO {
 
             if (rows > 0) {
 
+                // Registro en bitácora
                 try {
                     registrarBitacora("UPDATE aplicación ID: " + app.getAplcodigo() +
                                       " Nombre: " + app.getAplnombre());
@@ -108,6 +147,12 @@ public class AplicacionesDAO {
         }
     }
 
+    /**
+     * Elimina una aplicación de la base de datos según su ID.
+     * Registra la acción en la bitácora.
+     * 
+     * @param codigo ID de la aplicación a eliminar
+     */
     public void delete(int codigo) {
 
         String sql = "DELETE FROM aplicaciones WHERE Aplcodigo=?";
@@ -120,6 +165,7 @@ public class AplicacionesDAO {
 
             if (rows > 0) {
 
+                // Registro en bitácora
                 try {
                     registrarBitacora("DELETE aplicación ID: " + codigo);
                 } catch (Exception ex) {
@@ -136,6 +182,12 @@ public class AplicacionesDAO {
         }
     }
 
+    /**
+     * Consulta una aplicación específica por su ID.
+     * 
+     * @param codigo ID de la aplicación
+     * @return Objeto clsAplicaciones o null si no existe
+     */
     public clsAplicaciones query(int codigo) {
 
         clsAplicaciones app = null;
@@ -163,4 +215,25 @@ public class AplicacionesDAO {
         return app;
     }
 
+    /**
+     * Registra una acción en la bitácora del sistema.
+     * 
+     * @param accion Descripción de la acción realizada
+     */
+    private void registrarBitacora(String accion) {
+
+        int usuario = clsUsuarioConectado.getUsuId();
+
+        // Validación de usuario autenticado
+        if (usuario == 0) {
+            throw new RuntimeException("No hay usuario autenticado");
+        }
+
+        BitacoraDAO bitacora = new BitacoraDAO();
+
+        // ID de aplicación para bitácora (debe existir en la BD)
+        int aplCodigoBitacora = 1;
+
+        bitacora.insert(usuario, aplCodigoBitacora, accion);
+    }
 }
