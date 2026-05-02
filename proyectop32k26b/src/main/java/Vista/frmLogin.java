@@ -11,6 +11,7 @@ import Modelo.BitacoraDAO;
 import Controlador.clsSeguridad;
 import Controlador.clsUsuario;
 import Controlador.clsUsuarioConectado;
+import Vista.vistaCuentasCorrientes.MdiGeneralCC;
 
 import java.awt.HeadlessException;
 import java.util.HashSet;
@@ -223,7 +224,7 @@ public class frmLogin extends javax.swing.JFrame {
                         break;
                         case "Cuentas Corrientes":
                         try {
-                            MdiSeguridad menu = new MdiSeguridad();
+                            MdiGeneralCC menu = new MdiGeneralCC();
                             menu.setVisible(true);
                             this.dispose();
                         } catch (Exception e) {

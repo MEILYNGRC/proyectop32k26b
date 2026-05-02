@@ -391,6 +391,7 @@ public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        ventana.setVisible(true);   
     }//GEN-LAST:event_frmProcesoPerfilUsuarioActionPerformed
 
     private void frmProcesoAplicacionPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmProcesoAplicacionPerfilActionPerformed
