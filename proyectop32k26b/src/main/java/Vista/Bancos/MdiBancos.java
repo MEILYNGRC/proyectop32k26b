@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Vista.Bancos;
 
 
+import Vista.*;
 import Controlador.clsUsuarioConectado;
 import Modelo.PermisosDAO;
 import java.awt.Dimension;
@@ -20,17 +21,17 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class MdiSeguridad extends javax.swing.JFrame {
+public class MdiBancos extends javax.swing.JFrame {
     
     
 
     /**
      * Creates new form MdiGeneral
      */
-    public MdiSeguridad() {
+    public MdiBancos() {
         initComponents();
         setLocationRelativeTo(null);
-        this.setExtendedState(MdiSeguridad.MAXIMIZED_BOTH);
+        this.setExtendedState(MdiBancos.MAXIMIZED_BOTH);
         this.setTitle("");
         cerrar();
         
@@ -68,13 +69,15 @@ public class MdiSeguridad extends javax.swing.JFrame {
         mnuSalirSistema = new javax.swing.JCheckBoxMenuItem();
         mnuCatalogos = new javax.swing.JMenu();
         mnuCatalogosMantenimientos = new javax.swing.JMenu();
-        mantenimientoUsuarios = new javax.swing.JMenuItem();
-        frmMantenimientoPerfiles = new javax.swing.JMenuItem();
-        frmMantenimientoAplicaciones = new javax.swing.JMenuItem();
+        mantenimientoBancos = new javax.swing.JMenuItem();
+        frmMantenimientoClientes = new javax.swing.JMenuItem();
+        frmMantenimientoTipoCuenta = new javax.swing.JMenuItem();
         mnuProcesos = new javax.swing.JMenu();
         frmProcesoPerfilUsuario = new javax.swing.JMenuItem();
         frmProcesoAplicacionPerfil = new javax.swing.JMenuItem();
         frmProcesoAplicacionUsuario = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         mnuConsultas = new javax.swing.JMenu();
         frmMantenimientoBitacora = new javax.swing.JMenuItem();
         mnuReportes = new javax.swing.JMenu();
@@ -131,38 +134,38 @@ public class MdiSeguridad extends javax.swing.JFrame {
             }
         });
 
-        mantenimientoUsuarios.setText("Mantenimiento Usuarios");
-        mantenimientoUsuarios.addActionListener(new java.awt.event.ActionListener() {
+        mantenimientoBancos.setText("Mantenimiento Bancos");
+        mantenimientoBancos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mantenimientoUsuariosActionPerformed(evt);
+                mantenimientoBancosActionPerformed(evt);
             }
         });
-        mnuCatalogosMantenimientos.add(mantenimientoUsuarios);
+        mnuCatalogosMantenimientos.add(mantenimientoBancos);
 
-        frmMantenimientoPerfiles.setText("Mantenimiento Perfiles");
-        frmMantenimientoPerfiles.addAncestorListener(new javax.swing.event.AncestorListener() {
+        frmMantenimientoClientes.setText("Mantenimiento Clientes");
+        frmMantenimientoClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                frmMantenimientoPerfilesAncestorAdded(evt);
+                frmMantenimientoClientesAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        frmMantenimientoPerfiles.addActionListener(new java.awt.event.ActionListener() {
+        frmMantenimientoClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmMantenimientoPerfilesActionPerformed(evt);
+                frmMantenimientoClientesActionPerformed(evt);
             }
         });
-        mnuCatalogosMantenimientos.add(frmMantenimientoPerfiles);
+        mnuCatalogosMantenimientos.add(frmMantenimientoClientes);
 
-        frmMantenimientoAplicaciones.setText("Mantenimiento Aplicaciones");
-        frmMantenimientoAplicaciones.addActionListener(new java.awt.event.ActionListener() {
+        frmMantenimientoTipoCuenta.setText("Mantenimiento Tipo Cuenta");
+        frmMantenimientoTipoCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmMantenimientoAplicacionesActionPerformed(evt);
+                frmMantenimientoTipoCuentaActionPerformed(evt);
             }
         });
-        mnuCatalogosMantenimientos.add(frmMantenimientoAplicaciones);
+        mnuCatalogosMantenimientos.add(frmMantenimientoTipoCuenta);
 
         mnuCatalogos.add(mnuCatalogosMantenimientos);
 
@@ -175,7 +178,7 @@ public class MdiSeguridad extends javax.swing.JFrame {
             }
         });
 
-        frmProcesoPerfilUsuario.setText("Asignacion Perfiles a Usuarios");
+        frmProcesoPerfilUsuario.setText("Asignacion Cociliación Bancaria");
         frmProcesoPerfilUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 frmProcesoPerfilUsuarioActionPerformed(evt);
@@ -183,7 +186,7 @@ public class MdiSeguridad extends javax.swing.JFrame {
         });
         mnuProcesos.add(frmProcesoPerfilUsuario);
 
-        frmProcesoAplicacionPerfil.setText("Asignacion Aplicaciones a Perfil");
+        frmProcesoAplicacionPerfil.setText("Asignacion Cuenta Bancaria");
         frmProcesoAplicacionPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 frmProcesoAplicacionPerfilActionPerformed(evt);
@@ -191,13 +194,19 @@ public class MdiSeguridad extends javax.swing.JFrame {
         });
         mnuProcesos.add(frmProcesoAplicacionPerfil);
 
-        frmProcesoAplicacionUsuario.setText("Asignacion Aplicaciones a Usuario");
+        frmProcesoAplicacionUsuario.setText("Asignacion Estado Conciliación");
         frmProcesoAplicacionUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 frmProcesoAplicacionUsuarioActionPerformed(evt);
             }
         });
         mnuProcesos.add(frmProcesoAplicacionUsuario);
+
+        jMenuItem3.setText("Asignación Movimiento Bancario");
+        mnuProcesos.add(jMenuItem3);
+
+        jMenuItem5.setText("Asignación Transacción");
+        mnuProcesos.add(jMenuItem5);
 
         mnuGeneral.add(mnuProcesos);
 
@@ -208,7 +217,7 @@ public class MdiSeguridad extends javax.swing.JFrame {
             }
         });
 
-        frmMantenimientoBitacora.setText("Consulta Bitacora");
+        frmMantenimientoBitacora.setText("Consulta Bitacora Bancaria");
         frmMantenimientoBitacora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 frmMantenimientoBitacoraActionPerformed(evt);
@@ -266,13 +275,13 @@ public class MdiSeguridad extends javax.swing.JFrame {
                     }
     }
     
-    //Roquel
+  
      // Método para bloquear o desbloquear opciones según los permisos
 public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
     
-    mantenimientoUsuarios.setEnabled(false);
-    frmMantenimientoPerfiles.setEnabled(false);
-    frmMantenimientoAplicaciones.setEnabled(false);
+    mantenimientoBancos.setEnabled(false);
+    frmMantenimientoClientes.setEnabled(false);
+    frmMantenimientoTipoCuenta.setEnabled(false);
     frmMantenimientoBitacora.setEnabled(false);
     frmProcesoPerfilUsuario.setEnabled(false);
     frmProcesoAplicacionPerfil.setEnabled(false);
@@ -282,13 +291,13 @@ public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
     for (int codigoApp : appsPermitidas) {
         switch (codigoApp) {
             case 10: // Código numérico le pertenece a cada ventana
-                mantenimientoUsuarios.setEnabled(true);
+                mantenimientoBancos.setEnabled(true);
                 break;
             case 10007:
-                frmMantenimientoPerfiles.setEnabled(true);
+                frmMantenimientoClientes.setEnabled(true);
                 break;
             case 11:
-                frmMantenimientoAplicaciones.setEnabled(true);
+                frmMantenimientoTipoCuenta.setEnabled(true);
                 break;
             case 10005:
                 frmMantenimientoBitacora.setEnabled(true);
@@ -338,7 +347,7 @@ public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
         // TODO add your handling code here:
     }//GEN-LAST:event_mnuCatalogosMantenimientosActionPerformed
 
-    private void mantenimientoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoUsuariosActionPerformed
+    private void mantenimientoBancosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoBancosActionPerformed
         // TODO add your handling code here:
         System.out.println("entre a mantenimiento usuarios");
         frmMantenimientoUsuario ventana = new frmMantenimientoUsuario();
@@ -346,9 +355,9 @@ public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-    }//GEN-LAST:event_mantenimientoUsuariosActionPerformed
+    }//GEN-LAST:event_mantenimientoBancosActionPerformed
 
-    private void frmMantenimientoPerfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmMantenimientoPerfilesActionPerformed
+    private void frmMantenimientoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmMantenimientoClientesActionPerformed
         // TODO add your handling code here:
         System.out.println("entre a mantenimiento perfiles");
         frmMantenimientoPerfil ventana = new frmMantenimientoPerfil();
@@ -356,13 +365,13 @@ public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-    }//GEN-LAST:event_frmMantenimientoPerfilesActionPerformed
+    }//GEN-LAST:event_frmMantenimientoClientesActionPerformed
 
-    private void frmMantenimientoPerfilesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_frmMantenimientoPerfilesAncestorAdded
+    private void frmMantenimientoClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_frmMantenimientoClientesAncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_frmMantenimientoPerfilesAncestorAdded
+    }//GEN-LAST:event_frmMantenimientoClientesAncestorAdded
 
-    private void frmMantenimientoAplicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmMantenimientoAplicacionesActionPerformed
+    private void frmMantenimientoTipoCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmMantenimientoTipoCuentaActionPerformed
         // TODO add your handling code here:
         System.out.println("entre a mantenimiento Aplicaciones");
         frmMantenimientoAplicaciones ventana = new frmMantenimientoAplicaciones();
@@ -371,7 +380,7 @@ public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         ventana.setVisible(true);
-    }//GEN-LAST:event_frmMantenimientoAplicacionesActionPerformed
+    }//GEN-LAST:event_frmMantenimientoTipoCuentaActionPerformed
 
     private void frmMantenimientoBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmMantenimientoBitacoraActionPerformed
         // TODO add your handling code here:
@@ -386,14 +395,11 @@ public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
     private void frmProcesoPerfilUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmProcesoPerfilUsuarioActionPerformed
         // TODO add your handling code here:
         System.out.println("entre a proceso Asignacion Perfil Usuario");
-
         frmProcesoPerfilUsuario ventana = new frmProcesoPerfilUsuario();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        ventana.setVisible(true);   
-
     }//GEN-LAST:event_frmProcesoPerfilUsuarioActionPerformed
 
     private void frmProcesoAplicacionPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmProcesoAplicacionPerfilActionPerformed
@@ -434,14 +440,22 @@ public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MdiSeguridad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MdiBancos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MdiSeguridad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MdiBancos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MdiSeguridad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MdiBancos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MdiSeguridad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MdiBancos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -454,15 +468,15 @@ public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MdiSeguridad().setVisible(true);
+                new MdiBancos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem frmMantenimientoAplicaciones;
     private javax.swing.JMenuItem frmMantenimientoBitacora;
-    private javax.swing.JMenuItem frmMantenimientoPerfiles;
+    private javax.swing.JMenuItem frmMantenimientoClientes;
+    private javax.swing.JMenuItem frmMantenimientoTipoCuenta;
     private javax.swing.JMenuItem frmProcesoAplicacionPerfil;
     private javax.swing.JMenuItem frmProcesoAplicacionUsuario;
     private javax.swing.JMenuItem frmProcesoPerfilUsuario;
@@ -471,8 +485,10 @@ public void configurarVisibilidadBotones(List<Integer> appsPermitidas) {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem mantenimientoUsuarios;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem mantenimientoBancos;
     private javax.swing.JMenu mnuArchivo;
     private javax.swing.JMenu mnuAyudas;
     private javax.swing.JMenu mnuCatalogos;
