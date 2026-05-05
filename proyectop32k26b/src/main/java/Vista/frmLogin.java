@@ -11,6 +11,9 @@ import Modelo.BitacoraDAO;
 import Controlador.clsSeguridad;
 import Controlador.clsUsuario;
 import Controlador.clsUsuarioConectado;
+
+import Vista.vistaCuentasCorrientes.MdiGeneralCC;
+
 import Vista.Bancos.MdiBancos;
 
 import java.awt.HeadlessException;
@@ -203,74 +206,72 @@ public class frmLogin extends javax.swing.JFrame {
                     
                     switch (areaSeleccionada) {
 
+
         case "Bancos":
-        try {
-            MdiBancos menu = new MdiBancos(); // ← Solo aquí abre el MDI
-            menu.setVisible(true);
-            this.dispose();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        break;
+    try {
+        MdiBancos menu = new MdiBancos();
+        menu.setVisible(true);
+        this.dispose();
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+    break;
 
+case "Compras":
+    try {
+        JOptionPane.showMessageDialog(null, 
+            "Módulo de Compras aún no disponible", 
+            "Información", 
+            JOptionPane.INFORMATION_MESSAGE);
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+    break;
 
-    case "Compras":
-        try {
-            JOptionPane.showMessageDialog(null, 
-                "Módulo de Compras aún no disponible", 
-                "Información", 
-                JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        break;
+case "Cuentas Corrientes":
+    try {
+        MdiGeneralCC menu = new MdiGeneralCC();
+        menu.setVisible(true);
+        this.dispose();
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+    break;
 
-    case "Cuentas Corrientes":
-        try {
-            JOptionPane.showMessageDialog(null, 
-                "Módulo de Cuentas Corrientes aún no disponible", 
-                "Información", 
-                JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        break;
+case "Inventarios":
+    try {
+        JOptionPane.showMessageDialog(null, 
+            "Módulo de Inventarios aún no disponible", 
+            "Información", 
+            JOptionPane.INFORMATION_MESSAGE);
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+    break;
 
-    case "Inventarios":
-        try {
-            JOptionPane.showMessageDialog(null, 
-                "Módulo de Inventarios aún no disponible", 
-                "Información", 
-                JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        break;
+case "Seguridad":
+    try {
+        MdiSeguridad menu = new MdiSeguridad();
+        menu.setVisible(true);
+        this.dispose();
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+    break;
 
-    case "Seguridad":
-        try {
-            MdiSeguridad menu = new MdiSeguridad(); // ← Solo aquí abre el MDI
-            menu.setVisible(true);
-            this.dispose();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        break;
+case "Ventas":
+    try {
+        JOptionPane.showMessageDialog(null, 
+            "Módulo de Ventas aún no disponible", 
+            "Información", 
+            JOptionPane.INFORMATION_MESSAGE);
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+    break;
 
-    case "Ventas":
-        try {
-            JOptionPane.showMessageDialog(null, 
-                "Módulo de Ventas aún no disponible", 
-                "Información", 
-                JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        break;
-
-    default:
-        break;
-}
+default:
+    break;
 
                 } else {
                     JOptionPane.showMessageDialog(this, "ERROR AL ENCONTRAR USUARIO o CONTRASEÑA",                              "ERROR", JOptionPane.ERROR_MESSAGE);
