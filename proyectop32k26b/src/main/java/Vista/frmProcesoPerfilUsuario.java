@@ -153,13 +153,11 @@ private static final int Aplcodigo = 10010;
         btnAsignarTodos = new javax.swing.JButton();
         btnQuitarTodos = new javax.swing.JButton();
 
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel1.setText("MANTENIMIENTO ASIGNACIÓN PERFIL USUARIO.");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 23, -1, -1));
+        getContentPane().add(jLabel1, java.awt.BorderLayout.CENTER);
 
         jLabel2.setText("Usuario");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 62, -1, -1));
+        getContentPane().add(jLabel2, java.awt.BorderLayout.PAGE_START);
 
         cboUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -167,10 +165,10 @@ private static final int Aplcodigo = 10010;
                 cboUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(cboUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 57, 154, -1));
+        getContentPane().add(cboUsuario, java.awt.BorderLayout.PAGE_END);
 
         jLabel3.setText("Codigo Usuario: ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 62, -1, -1));
+        getContentPane().add(jLabel3, java.awt.BorderLayout.LINE_END);
 
         cboUsuarioId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboUsuarioId.addActionListener(new java.awt.event.ActionListener() {
@@ -178,10 +176,10 @@ private static final int Aplcodigo = 10010;
                 cboUsuarioIdActionPerformed(evt);
             }
         });
-        getContentPane().add(cboUsuarioId, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 57, 153, -1));
+        getContentPane().add(cboUsuarioId, java.awt.BorderLayout.LINE_START);
 
         jLabel4.setText("PERFILES DISPONIBLES:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 123, -1, -1));
+        getContentPane().add(jLabel4, java.awt.BorderLayout.CENTER);
 
         tablaDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -196,10 +194,10 @@ private static final int Aplcodigo = 10010;
         ));
         jScrollPane1.setViewportView(tablaDisponibles);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 151, 360, -1));
+        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jLabel5.setText("PERFILES ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 123, -1, -1));
+        getContentPane().add(jLabel5, java.awt.BorderLayout.CENTER);
 
         tablaAsignados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -214,7 +212,7 @@ private static final int Aplcodigo = 10010;
         ));
         jScrollPane2.setViewportView(tablaAsignados);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 151, 343, -1));
+        getContentPane().add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         btnAsignarUno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAsignarUno.setText(">");
@@ -223,7 +221,7 @@ private static final int Aplcodigo = 10010;
                 btnAsignarUnoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAsignarUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 232, -1, -1));
+        getContentPane().add(btnAsignarUno, java.awt.BorderLayout.CENTER);
 
         btnQuitarUno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnQuitarUno.setText("<");
@@ -232,7 +230,7 @@ private static final int Aplcodigo = 10010;
                 btnQuitarUnoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnQuitarUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 350, -1, -1));
+        getContentPane().add(btnQuitarUno, java.awt.BorderLayout.CENTER);
 
         btnAsignarTodos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAsignarTodos.setText(">>");
@@ -241,7 +239,7 @@ private static final int Aplcodigo = 10010;
                 btnAsignarTodosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAsignarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 286, -1, -1));
+        getContentPane().add(btnAsignarTodos, java.awt.BorderLayout.CENTER);
 
         btnQuitarTodos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnQuitarTodos.setText("<<");
@@ -250,7 +248,7 @@ private static final int Aplcodigo = 10010;
                 btnQuitarTodosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnQuitarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 412, -1, -1));
+        getContentPane().add(btnQuitarTodos, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
