@@ -14,10 +14,13 @@ package Vista;
  * - Eliminar asignaciones de aplicaciones
  * - Visualizar historial completo en la bitácora
  * - Registro automático de todas las acciones
+ * - Permisos generales: habilita/deshabilita botones según perfil del usuario
+ * - Permisos particulares: controla checkboxes del popup respetando el techo del perfil
  * 
  * @author Angel Méndez
  * @carnet 9959-24-6845
  * @since 2026-04-08
+ * @updated 2026-05-04
  */
 
 import Controlador.clsAplicaciones;
@@ -32,6 +35,8 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
+import Controlador.clsUsuarioConectado;
+import Modelo.PermisosDAO;
 
 public class frmProcesoAplicacionUsuario extends javax.swing.JInternalFrame {
 
@@ -97,6 +102,7 @@ public class frmProcesoAplicacionUsuario extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Asignacion Aplicaciones a Usuario");
         setDefaultCloseOperation(javax.swing.JInternalFrame.DISPOSE_ON_CLOSE);
+        cargarPermisos();
     }
 
     @SuppressWarnings("unchecked")
@@ -649,10 +655,10 @@ private void abrirPermisosDialog() {
     clsAplicaciones app = listaAsig.get(idx);
     int usuId = usu.getUsuId();
     int aplCodigo = app.getAplcodigo();
-    clsAsignacionAplicacionUsuario ctrl =
-            new clsAsignacionAplicacionUsuario();
-    clsAsignacionAplicacionUsuario asig =
-            ctrl.getPermisos(usuId, aplCodigo);
+
+    clsAsignacionAplicacionUsuario ctrl = new clsAsignacionAplicacionUsuario();
+    clsAsignacionAplicacionUsuario asig = ctrl.getPermisos(usuId, aplCodigo);
+
     if (asig != null) {
         chkInsert.setSelected("1".equals(asig.getAPLUins()));
         chkSelect.setSelected("1".equals(asig.getAPLUsel()));
@@ -666,7 +672,19 @@ private void abrirPermisosDialog() {
         chkDelete.setSelected(false);
         chkReport.setSelected(false);
     }
-    dlgPermisosAplicacion.setSize(450, 350);  // ← DEFINIR TAMAÑO
+
+    // ── NUEVO: deshabilitar según permisos del perfil ──────────────
+    PermisosDAO permisosDAO = new PermisosDAO();
+    int usuConectado = usu.getUsuId();
+
+    chkInsert.setEnabled( permisosDAO.puedeInsertar(usuConectado, aplCodigo) );
+    chkSelect.setEnabled( permisosDAO.puedeBuscar(usuConectado, aplCodigo)   );
+    chkUpdate.setEnabled( permisosDAO.puedeModificar(usuConectado, aplCodigo) );
+    chkDelete.setEnabled( permisosDAO.puedeEliminar(usuConectado, aplCodigo)  );
+    chkReport.setEnabled( permisosDAO.puedeReportar(usuConectado, aplCodigo)  );
+    // ──────────────────────────────────────────────────────────────
+
+    dlgPermisosAplicacion.setSize(450, 350);
     dlgPermisosAplicacion.setLocationRelativeTo(this);
     dlgPermisosAplicacion.setModal(true);
     dlgPermisosAplicacion.setVisible(true);
@@ -759,6 +777,20 @@ private void abrirPermisosDialog() {
         lstDisponibles.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         lstAsignadas.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     }
+    
+    public void cargarPermisos() {
+    int usuId = clsUsuarioConectado.getUsuId();
+    
+    // Si por algún motivo devuelve 0, usa un valor por defecto
+    if (usuId == 0) usuId = 1;
+    
+    PermisosDAO permisosDAO = new PermisosDAO();
+    int codigoAplicacion = 10012;
+
+    btnAsignar.setEnabled( permisosDAO.puedeInsertar(usuId, codigoAplicacion) );
+    btnQuitar.setEnabled(  permisosDAO.puedeEliminar(usuId, codigoAplicacion) );
+    btnCargar.setEnabled(  permisosDAO.puedeBuscar(usuId, codigoAplicacion) );
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignar;
