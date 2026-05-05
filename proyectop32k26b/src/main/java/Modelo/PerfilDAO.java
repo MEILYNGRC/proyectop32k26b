@@ -57,8 +57,8 @@ public class PerfilDAO {
                 lista.add(p);
             }
 
-            //bitacora.setBitaccion("SELECT perfiles");
-            //insertarBitacora(bitacora);
+            bitacora.setBitaccion("SELECT perfiles");
+            insertarBitacora(bitacora);
 
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -171,8 +171,8 @@ public class PerfilDAO {
                 perfil.setPerestado(rs.getString("perestado"));
             }
 
-            //bitacora.setBitaccion("SELECT perfil ID " + id);
-            //insertarBitacora(bitacora);
+            bitacora.setBitaccion("SELECT perfil ID " + id);
+            insertarBitacora(bitacora);
 
         } catch (SQLException e) {
             e.printStackTrace(System.out);
