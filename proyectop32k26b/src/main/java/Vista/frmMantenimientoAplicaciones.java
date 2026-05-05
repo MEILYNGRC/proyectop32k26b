@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.io.File;
+
 /**
  *
  * @author ferito
@@ -372,7 +374,19 @@ AplicacionesDAO dao = new AplicacionesDAO(); //inicializar llamada al DAO
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+try {
+            if ((new File("C:\\Users\\VA\\Desktop\\proyectop32k26b\\proyectop32k26b\\src\\main\\java\\Ayudas\\Bancos")).exists()) {
+                Process p = Runtime
+                        .getRuntime()
+                        .exec("rundll32 url.dll,FileProtocolHandler C:\\Users\\VA\\Desktop\\proyectop32k26b\\proyectop32k26b\\src\\main\\java\\Ayudas\\Bancos");
+                p.waitFor();
+            } else {
+                System.out.println("La ayuda no Fue encontrada");
+            }
+            System.out.println("Correcto");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
